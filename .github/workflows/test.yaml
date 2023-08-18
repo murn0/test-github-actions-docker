@@ -25,5 +25,9 @@ jobs:
             --tag test-container \
             --build-arg DOCKER_IMAGE_NAME=${{ matrix.image }}
           docker image ls
-          docker container run --mount type=bind,source=${{ github.workspace }},target=/home/user test-container "ls && cat /etc/os-release"
+          docker container run --mount type=bind,source=${{ github.workspace }},target=/home/user test-container <<EOF
+            set -eux
+            ls
+            cat /etc/os-release
+          EOF
           docker ps -a
