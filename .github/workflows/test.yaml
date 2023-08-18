@@ -20,5 +20,6 @@ jobs:
       - name: test
         run: |
           docker system df
+          docker image ls
           # docker build . --file Dockerfile --platform linux/amd64 --tag test-container:${{ matrix.image }}
           # docker container run test-container:${{ matrix.image }} pwd
