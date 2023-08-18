@@ -19,7 +19,7 @@ jobs:
       - name: test
         run: |
           docker system df
+          docker build . --file Dockerfile --platform linux/amd64 --tag test-container --build-arg DOCKER_IMAGE_NAME=${{ matrix.image }}
           docker image ls
-          # docker build . --file Dockerfile --platform linux/amd64 --tag test-container:${{ matrix.image }}
-          docker container run ${{ matrix.image }} whoami
+          docker container run test-container
           docker ps -a
