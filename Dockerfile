@@ -6,7 +6,7 @@ ARG GROUPNAME=user
 ARG UID=1000
 ARG GID=1000
 RUN <<EOF
-    set -eux
+    set -e
     groupadd -g $GID $GROUPNAME
     useradd -m -s /bin/bash -u $UID -g $GID $USERNAME
 EOF
