@@ -1,6 +1,8 @@
 ARG DOCKER_IMAGE_NAME
 FROM ${DOCKER_IMAGE_NAME}
 
+COPY /usr/bin/make /usr/bin/make
+
 ARG USERNAME=user
 ARG GROUPNAME=user
 ARG UID=1000
