@@ -14,8 +14,6 @@ jobs:
           - ubuntu:22.04
           - debian:10
           - debian:11
-    env:
-      DOCKER_USER_NAME: "user"
     steps:
       - uses: actions/checkout@v3
       - name: test
@@ -25,8 +23,7 @@ jobs:
             --file Dockerfile \
             --platform linux/amd64 \
             --tag test-container \
-            --build-arg DOCKER_IMAGE_NAME=${{ matrix.image }} \
-            --build-arg DOCKER_USER_NAME=${{ env.DOCKER_USER_NAME }}
+            --build-arg DOCKER_IMAGE_NAME=${{ matrix.image }}
           docker image ls
           docker container run --mount type=bind,source=${{ github.workspace }},target=/home/user test-container ls
           docker ps -a
