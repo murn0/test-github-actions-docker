@@ -1,0 +1,25 @@
+# このファイルをpushしたらこのファイルのGithubアクションが実行される
+name: test
+on:
+  push:
+    paths:
+      - .github/workflows/test.yaml
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:      
+      matrix:
+        image:
+          - ubuntu:20.04
+          - ubuntu:22.04
+          - debian:stretch  # Debian 9
+          - debian:buster   # Debian 10
+          - debian:bullseye # Debian 11
+    container:
+      image: ${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: test
+        run: |
+          docker build . --file Dockerfile --platform linux/amd64 --tag test-container:${{ matrix.image }}
+          docker container run test-container:${{ matrix.image }} pwd
