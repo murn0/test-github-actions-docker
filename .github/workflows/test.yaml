@@ -21,5 +21,5 @@ jobs:
           docker system df
           docker build . --file Dockerfile --platform linux/amd64 --tag test-container --build-arg DOCKER_IMAGE_NAME=${{ matrix.image }}
           docker image ls
-          docker container run test-container
+          docker container run test-container pwd
           docker ps -a
