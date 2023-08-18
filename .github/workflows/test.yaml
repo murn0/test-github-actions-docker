@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: test
         run: |
+          which make
           docker system df
           docker build . \
             --file Dockerfile \
