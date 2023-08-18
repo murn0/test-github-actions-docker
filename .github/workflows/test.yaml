@@ -19,7 +19,7 @@ jobs:
       - name: test
         run: |
           docker system df
-          docker build . --file Dockerfile --platform linux/amd64 --tag test-container --build-arg DOCKER_IMAGE_NAME=${{ matrix.image }}
+          # docker build . --file Dockerfile --platform linux/amd64 --tag test-container --build-arg DOCKER_IMAGE_NAME=${{ matrix.image }}
           docker image ls
           # docker container run test-container --mount type=bind,source=${{ github.workspace }},target=/home/user "ls"
           docker compose run -e DOCKER_IMAGE_NAME=${{ matrix.image }} web
