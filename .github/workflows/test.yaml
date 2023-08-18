@@ -22,3 +22,4 @@ jobs:
           docker image ls
           # docker build . --file Dockerfile --platform linux/amd64 --tag test-container:${{ matrix.image }}
           docker container run ${{ matrix.image }} pwd
+          docker ps
